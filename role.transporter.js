@@ -2,23 +2,10 @@ var roleTransporter = {
 
     run: function(creep) {
 
-        if(creep.memory.transporting && creep.carry.energy < 0.1*creep.carryCapacity) {
-            creep.memory.transporting = false;
-            creep.say('getting');
-        }
-        if(!creep.memory.transporting && creep.carry.energy == creep.carryCapacity) {
-            creep.memory.transporting = true;
-            creep.say('charging');
-        }
-
-        if(!creep.memory.transporting) {
-            var stor = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {   //过滤
-                        return (structure.structureType == STRUCTURE_STORAGE) 
-                    }   
-            });
-
-            if(creep.withdraw(RESOURCE_ENERGY,stor[0]) == ERR_NOT_IN_RANGE) {
+        if(creep.memory.transporting) {
+            var target = GAME.getObjectById();
+            
+            if(creep.withdraw(RESOURCE_ENERGY,) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(stor[0], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
 

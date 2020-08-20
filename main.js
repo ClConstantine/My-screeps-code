@@ -4,9 +4,15 @@ var roleUpgrader = require('role.upgrader');
 var roleRepairer = require('role.repairer');
 var roleTransporter = require('role.transporter');
 var autoSpawn = require('autoSpawn');
+var roleE38N5harvester = require('E38N5harvester');
+var roleE39N5harvester = require('E39N5harvester');
+
 
 module.exports.loop = function () {
     
+    if(Game.cpu.bucket > 7000){
+        Game.cpu.generatePixel();
+    }
 
     //删除内存
 
@@ -20,8 +26,8 @@ module.exports.loop = function () {
     autoSpawn.run();
 
     //防御塔
-    var tower1 = Game.getObjectById('5f22986377047eccac817085');
-    var tower2 = Game.getObjectById('5da9af457e8c292a991e894c');
+    var tower1 = Game.getObjectById('5f232a023b6cd74e2858dd71');
+    var tower2 = Game.getObjectById('5f2903e536816ddbcc005e64');
     if(tower1) {
         var closestHostile = tower1.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if(closestHostile) {
@@ -29,33 +35,41 @@ module.exports.loop = function () {
         }
 
     }
-    /*
+   
     if(tower2) {
         var closestDamagedStructure = tower2.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax-900 && structure.hits < 100000
+            filter: (structure) => structure.hits < structure.hitsMax-900 && 
+                                    structure.hits < 900000 &&
+                                    structure.structureType != STRUCTURE_RAMPART
         });
         
         if(closestDamagedStructure) {
             tower2.repair(closestDamagedStructure);
         }
-    }*/
+    }
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
             roleHarvester.run(creep);
         }
-        if(creep.memory.role == 'upgrader') {
+        else if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
-        if(creep.memory.role == 'builder'){
+        else if(creep.memory.role == 'builder'){
             roleBuilder.run(creep);
         }
-        if(creep.memory.role == 'repairer') {
+        else if(creep.memory.role == 'repairer') {
             roleRepairer.run(creep);
         }
-        if(creep.memory.role == 'transporter') {
-            roleTransporter.run(creep);
+        // else if(creep.memory.role == 'transporter') {
+        //     roleTransporter.run(creep);
+        // }
+        else if(creep.memory.role == 'E38N5harvester') {
+            roleE38N5harvester.run(creep);
+        }
+        else if(creep.memory.role == 'E39N5harvester') {
+            roleE39N5harvester.run(creep);
         }
     }
 }

@@ -6,10 +6,10 @@ var autoSpawn = {
         var harvesternum = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
         console.log('harvesternum: ' + harvesternum.length);
 
-        if(harvesternum.length < 3) {
+        if(harvesternum.length < 4) {
             var newName = 'harvester' + Game.time;  
             console.log('Spawning new harvester: ' + newName);
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE], newName, 
                 {memory: {role: 'harvester'}});        
         }
         
@@ -51,7 +51,7 @@ var autoSpawn = {
         var buildernum = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
         console.log('buildernum: ' + buildernum.length);
 
-        if(buildernum.length < 1) {
+        if(buildernum.length < 2) {
             var newName = 'builder' + Game.time;  
             console.log('Spawning new builder: ' + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
@@ -63,11 +63,35 @@ var autoSpawn = {
         var repairernum = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
         console.log('repairernum: ' + repairernum.length);
 
-        if(repairernum.length < 3) {
+        if(repairernum.length < 1) {
             var newName = 'repairer' + Game.time;  
             console.log('Spawning new repairer: ' + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
                 {memory: {role: 'repairer'}});        
+        }
+
+
+
+        
+        var E38N5harvesternum = _.filter(Game.creeps, (creep) => creep.memory.role == 'E38N5harvester');
+        console.log('E38N5harvesternum: ' + E38N5harvesternum.length);
+
+        if(E38N5harvesternum.length < 1) {
+            var newName = 'E38N5harvester' + Game.time;  
+            console.log('Spawning new E38N5harvester: ' + newName);
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'E38N5harvester'}});        
+        }
+
+
+        var E39N5harvesternum = _.filter(Game.creeps, (creep) => creep.memory.role == 'E39N5harvester');
+        console.log('E39N5harvesternum: ' + E39N5harvesternum.length);
+
+        if(E39N5harvesternum.length < 1) {
+            var newName = 'E39N5harvester' + Game.time;  
+            console.log('Spawning new E39N5harvester: ' + newName);
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'E39N5harvester'}});        
         }
     }
 }

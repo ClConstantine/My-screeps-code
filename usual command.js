@@ -15,3 +15,9 @@ Game.spawns['Cons1'].spawnCreep( [WORK,CARRY,CARRY,MOVE],
 //标签
 
 Game.creeps['repairer11185067'].memory.role = 'harvester';
+
+//市场
+
+Game.market.calcTransactionCost(amount, 'roomName1', 'W10N30');
+// 5f3b2bf04e3638ec424be35a
+Game.market.deal('5f3b2bf04e3638ec424be35a', amount, 'yourRoomName');
