@@ -6,9 +6,18 @@ var roleTransporter = require('role.transporter');
 var autoSpawn = require('autoSpawn');
 var roleE38N5harvester = require('E38N5harvester');
 var roleE39N5harvester = require('E39N5harvester');
-
+var rolemidTransporter = require('role.midtransporter');
+var roleMiner = require('role.miner');
 
 module.exports.loop = function () {
+
+    // if(!Memory.E38N6Sources.length){
+    //     var xsources = Game.rooms['E38N6'].find(FIND_SOURCES);
+    //     console.log(xsources.length);
+    //     for(i = 0;i < xsources.length;++i){
+    //         Memory.E38N6Sources.push(xsources[i].id);
+    //     }
+    // }
     
     if(Game.cpu.bucket > 7000){
         Game.cpu.generatePixel();
@@ -70,6 +79,12 @@ module.exports.loop = function () {
         }
         else if(creep.memory.role == 'E39N5harvester') {
             roleE39N5harvester.run(creep);
+        }
+        else if(creep.memory.role == 'midTransporter'){
+            rolemidTransporter.run(creep);
+        }
+        else if(creep.memory.role == 'Miner'){
+            roleMiner.run(creep);
         }
     }
 }

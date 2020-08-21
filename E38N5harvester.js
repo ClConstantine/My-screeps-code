@@ -33,7 +33,7 @@ var E38N5harvester = {
 
         else {
             var workRoom = Game.rooms['E38N5'];
-            if(creep.room.name != workRoom.name){
+            if(creep.room != workRoom){
                 creep.moveTo(new RoomPosition(47, 11, 'E38N5'));
             }
             else{

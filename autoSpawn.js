@@ -10,7 +10,9 @@ var autoSpawn = {
             var newName = 'harvester' + Game.time;  
             console.log('Spawning new harvester: ' + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE], newName, 
-                {memory: {role: 'harvester'}});        
+                {memory: {role: 'harvester',
+                        workid: harvesternum.length
+            }});        
         }
         
         if(harvesternum.length < 2) {
@@ -51,7 +53,7 @@ var autoSpawn = {
         var buildernum = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
         console.log('buildernum: ' + buildernum.length);
 
-        if(buildernum.length < 2) {
+        if(buildernum.length < 1) {
             var newName = 'builder' + Game.time;  
             console.log('Spawning new builder: ' + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
@@ -93,6 +95,35 @@ var autoSpawn = {
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], newName, 
                 {memory: {role: 'E39N5harvester'}});        
         }
+
+
+
+        var midTransporternum = _.filter(Game.creeps, (creep) => creep.memory.role == 'midTransporter');
+        console.log('midTransporternum: ' + midTransporternum.length);
+
+        if(midTransporternum.length < 1) {
+            var newName = 'midTransporter' + Game.time;  
+            console.log('Spawning new midTransporter: ' + newName);
+            Game.spawns['Spawn1'].spawnCreep([MOVE,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY], newName, 
+                {memory: {role: 'midTransporter'}});        
+        }
+
+
+
+        var Mineral = Game.getObjectById(Memory.E38N6Mineral[0]);
+
+        if(Mineral.mineralAmount){
+            var Minernum = _.filter(Game.creeps, (creep) => creep.memory.role == 'Miner');
+            console.log('Minernum: ' + Minernum.length);
+    
+            if(Minernum.length < 1) {
+                var newName = 'Miner' + Game.time;  
+                console.log('Spawning new Miner: ' + newName);
+                Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE], newName, 
+                    {memory: {role: 'Miner'}});        
+            }
+        }
+
     }
 }
 

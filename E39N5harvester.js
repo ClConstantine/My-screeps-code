@@ -33,8 +33,8 @@ var E39N5harvester = {
 
         else {
             var workRoom = Game.rooms['E39N5'];
-            if(creep.room.name != workRoom.name){
-                creep.moveTo(new RoomPosition(47, 11, 'E39N5'));
+            if(creep.room != workRoom){
+                creep.moveTo(new RoomPosition(10, 28, 'E39N5'));
             }
             else{
                 var sources = creep.room.find(FIND_SOURCES);
